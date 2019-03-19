@@ -8,7 +8,8 @@ class Home extends Component {
   state = { 
     mainCharacter: "",
     characters: [],
-    epsiodeNumber: "" 
+    epsiodeNumber: "",
+    episodeInfo:[] 
   };
   // state = { epsiodeNumber: ""}
 
@@ -29,7 +30,8 @@ return movies.filter(movie => movie.episode_number===epsiodeNumber
     e.preventDefault();
 
     this.setState({
-      characters: this.moviesThatStar(this.state.mainCharacter)
+      characters: this.moviesThatStar(this.state.mainCharacter),
+      episodeInfo: this.epsiodeNum(this.state.epsiodeNumber),
     });
 
 
@@ -37,7 +39,7 @@ return movies.filter(movie => movie.episode_number===epsiodeNumber
   };
 
   render() {
-    console.log('episode', this.movieEpisode(4))
+    console.log('episode', this.movieEpisode())
     return (
       <React.Fragment>
         <form onSubmit={this.getMovies}>
@@ -66,6 +68,15 @@ return movies.filter(movie => movie.episode_number===epsiodeNumber
             <TitlePresenter title={movie.title} />
           ))}
         </ul>
+        <hr/>
+        <ul>
+          {this.state.episodeInfo.map(movie => (
+          <TitlePresenter title={movie.title} />
+          ))}
+          </ul>
+
+
+
       </React.Fragment>
     );
   }
